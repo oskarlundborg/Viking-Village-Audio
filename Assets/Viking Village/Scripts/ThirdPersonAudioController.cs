@@ -34,7 +34,7 @@ public class ThirdPersonAudioController : MonoBehaviour
         GameObject groundObject = null; 
         SurfaceColliderType act;
 
-        if(Physics.Raycast(transform.position + (Vector3.up * 0.5f), Vector3.down, out hitInfo, 0.6f))
+        if(Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.2f))
         {
             if(groundObject== null)
             {
