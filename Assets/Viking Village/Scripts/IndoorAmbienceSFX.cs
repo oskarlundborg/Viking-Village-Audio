@@ -7,6 +7,7 @@ public class IndoorAmbienceSFX : MonoBehaviour
     private AudioSource[] sources = new AudioSource[2];
     private int flip = 0;
     private double nextEventTime;
+    private bool isPlaying = false;
     public float volume = 1f;
     public float fadeTime = 1f;
     public AudioClip clip;
@@ -35,7 +36,22 @@ public class IndoorAmbienceSFX : MonoBehaviour
         }
     }
 
-    private IEnumerator fadeOut()
+    public void FadeSound()
+    {
+        if (isPlaying)
+        {
+            isPlaying = false;
+            StartCoroutine(FadeOut());
+        }
+        else
+        {
+            isPlaying = true;
+            StopCoroutine(FadeOut());
+            StartCoroutine(FadeIn());
+        }
+    }
+
+    private IEnumerator FadeOut()
     {
         float timeElapsed = 0.0f;
         while (timeElapsed < fadeTime)
@@ -49,9 +65,8 @@ public class IndoorAmbienceSFX : MonoBehaviour
         }
     }
 
-    private IEnumerator fadeIn()
+    private IEnumerator FadeIn()
     {
-        StopCoroutine(fadeOut());
         float timeElapsed = 0.0f;
         while (timeElapsed < fadeTime)
         {

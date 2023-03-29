@@ -175,6 +175,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_IsGrounded = false;
 				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
+				thirdPersonAudioController.PlayJumpSound();
 			}
 		}
 
@@ -213,6 +214,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
 			{
+				if(m_IsGrounded == false)
+				{
+					thirdPersonAudioController.PlayLandingSound();
+				}
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;

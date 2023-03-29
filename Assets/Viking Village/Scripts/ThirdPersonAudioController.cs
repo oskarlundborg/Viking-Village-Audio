@@ -9,23 +9,62 @@ public class ThirdPersonAudioController : MonoBehaviour
     private float stepFilterTime;
 
     private AudioSource footstepSource;
+    private AudioSource jumpSource;
     public AudioClip[] footstepStoneClips;
     public AudioClip[] footstepDirtClips;
     public AudioClip[] footstepGrassClips;
     public AudioClip[] footstepWoodClips;
+    public AudioClip[] jumpClips;
+    public AudioClip[] landingStoneClips;
+    public AudioClip[] landingWoodClips;
+    public AudioClip[] landingDirtClips;
 
     public string groundTerrain = "No ground";
 
     void Start()
     {
         footstepSource = gameObject.AddComponent<AudioSource>();
+        jumpSource = gameObject.AddComponent<AudioSource>();
         time = AudioSettings.dspTime;
         stepFilterTime = 0.2f;
     }
 
-    void Update()
+    public void PlayLandingSound()
     {
+        CheckGroundType();
+        if (groundTerrain == "Stone")
+        {
+            int random = Random.Range(1, landingStoneClips.Length);
+            AudioClip temp = landingStoneClips[random];
+            jumpSource.PlayOneShot(landingStoneClips[random]);
+            landingStoneClips[random] = landingStoneClips[0];
+            landingStoneClips[0] = temp;
+        }
+        else if (groundTerrain == "Wood")
+        {
+            int random = Random.Range(1, landingWoodClips.Length);
+            AudioClip temp = landingWoodClips[random];
+            jumpSource.PlayOneShot(landingWoodClips[random]);
+            landingWoodClips[random] = landingWoodClips[0];
+            landingWoodClips[0] = temp;
+        }
+        else if (groundTerrain == "Dirt")
+        {
+            int random = Random.Range(1, landingDirtClips.Length);
+            AudioClip temp = landingDirtClips[random];
+            jumpSource.PlayOneShot(landingDirtClips[random]);
+            landingDirtClips[random] = landingDirtClips[0];
+            landingDirtClips[0] = temp;
+        }
+    }
 
+    public void PlayJumpSound()
+    {
+        int random = Random.Range(1, jumpClips.Length);
+        AudioClip temp = jumpClips[random];
+        jumpSource.PlayOneShot(jumpClips[random]);
+        jumpClips[random] = jumpClips[0];
+        jumpClips[0] = temp;
     }
 
     void CheckGroundType()
@@ -34,7 +73,7 @@ public class ThirdPersonAudioController : MonoBehaviour
         GameObject groundObject = null; 
         SurfaceColliderType act;
 
-        if(Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.2f))
+        if(Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.25f))
         {
             if(groundObject== null)
             {

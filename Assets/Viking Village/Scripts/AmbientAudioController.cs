@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class AmbientAudioController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private WindAmbienceSFX WindPlayer;
+    private IndoorAmbienceSFX IndoorPlayer;
     void Start()
     {
-        
+        WindPlayer = GetComponentInChildren<WindAmbienceSFX>();
+        IndoorPlayer = GetComponentInChildren<IndoorAmbienceSFX>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwapAmbience()
     {
-        
+        WindPlayer.FadeSound();
+        IndoorPlayer.FadeSound();
     }
+
 }
