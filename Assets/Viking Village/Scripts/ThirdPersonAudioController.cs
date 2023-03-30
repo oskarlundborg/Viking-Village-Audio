@@ -80,8 +80,15 @@ public class ThirdPersonAudioController : MonoBehaviour
                 groundObject = hitInfo.collider.gameObject;
             }
             act = gameObject.GetComponent<SurfaceColliderType>();
+            int maxCount = 0;
             while(act == null && gameObject.GetComponentInParent<Transform>() != null)
             {
+                if(maxCount > 5)
+                {
+                    Debug.Log("Stopped the loop");
+                    break;
+                }
+                maxCount++;
                 groundObject = groundObject.GetComponentInParent<Transform>().gameObject;
                 act = groundObject.GetComponentInParent<SurfaceColliderType>();
             }

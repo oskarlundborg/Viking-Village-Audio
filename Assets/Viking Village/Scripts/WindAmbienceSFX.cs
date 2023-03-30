@@ -10,7 +10,7 @@ public class WindAmbienceSFX : MonoBehaviour
     private double nextEventTime;
     private bool isPlaying = true;
     public float volume = 1f;
-    public float fadeTime = 1f;
+    public float fadeTime = 3f;
     public AudioClip clip;
     
     void Start()
