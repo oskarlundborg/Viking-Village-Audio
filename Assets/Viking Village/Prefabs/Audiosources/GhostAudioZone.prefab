@@ -75,14 +75,14 @@ AudioSource:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.31158936
+      time: 0.51897156
       value: 0.5189972
-      inSlope: -1.6328117
-      outSlope: -1.6328117
+      inSlope: -2.7199762
+      outSlope: -2.7199762
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.38663438
-      outWeight: 0.0630175
+      outWeight: 0.1539508
     - serializedVersion: 3
       time: 0.9493408
       value: 0
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d973669722b2843a69da32b4fb55f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPlayTime: 3
 --- !u!135 &3448319725606474290
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ public class IndoorAmbienceSFX : MonoBehaviour
         float timeElapsed = 0.0f;
         while (timeElapsed < fadeTime)
         {
-            foreach(AudioSource source in sources)
+            foreach (AudioSource source in sources)
             {
                 source.volume = Mathf.Lerp(volume, 0, timeElapsed / fadeTime);
             }

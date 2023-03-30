@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindAmbienceSFX : MonoBehaviour
+public class FieldMusicPlayer : MonoBehaviour
 {
     private AudioSource[] sources = new AudioSource[2];
     private int flip = 0;
     private double nextEventTime;
-    private bool isPlaying = true;
     public float volume = 1f;
     public float fadeTime = 3f;
     public AudioClip clip;
@@ -19,7 +17,7 @@ public class WindAmbienceSFX : MonoBehaviour
         {
             sources[i] = gameObject.AddComponent<AudioSource>();
             sources[i].clip = clip;
-            sources[i].volume = volume;
+            sources[i].volume = 0;
         }
         nextEventTime = AudioSettings.dspTime + 1.0f;
     }
@@ -36,19 +34,15 @@ public class WindAmbienceSFX : MonoBehaviour
         }
     }
 
-    public void FadeSound()
+    public void FadeInMusic()
     {
-        if (isPlaying)
-        {
-            isPlaying = false;
-            StartCoroutine(FadeOut());
-        }
-        else
-        {
-            isPlaying = true;
-            StopCoroutine(FadeOut());
-            StartCoroutine(FadeIn());
-        }
+        StopCoroutine(FadeOut());
+        StartCoroutine(FadeIn());
+    }
+
+    public void FadeOutMusic()
+    {
+        StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeOut()

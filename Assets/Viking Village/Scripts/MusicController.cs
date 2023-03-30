@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    private AudioSource[] musicSources = new AudioSource[2];
-    private int creepynessLevel = 0;
-    public AudioClip[] musicClips;
+    private FieldMusicPlayer fieldPlayer;
+    private TownMusicPlayer townPlayer;
+    public bool inTown = true;
 
 
     private void Start()
     {
-        
+        fieldPlayer = GetComponentInChildren<FieldMusicPlayer>();
+        townPlayer = GetComponentInChildren<TownMusicPlayer>();
     }
 
-    public void advanceMusic()
+    public void SwapToTownMusic()
     {
+        Debug.Log("Swapping to town");
+        fieldPlayer.FadeOutMusic();
+        townPlayer.FadeInMusic();
+    }
 
+    public void SwapToFieldMusic()
+    {
+        Debug.Log("Swapping to field");
+        fieldPlayer.FadeInMusic();
+        townPlayer.FadeOutMusic();
     }
 }
