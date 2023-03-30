@@ -20,7 +20,7 @@ public class GhostAudioController : MonoBehaviour
 
     public AudioClip GetRandomEndgameClip()
     {
-        int random = Random.Range(10, 13);
+        int random = Random.Range(11, 13);
         Debug.Log("Random clip = " + random);
         AudioClip clipToReturn = ghostClips[random];
         ghostClips[random] = ghostClips[10];

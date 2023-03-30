@@ -7,9 +7,9 @@ public class GhostAudioZone : MonoBehaviour
     private GhostAudioController controller;
     private AudioSource source;
     private bool isPlaying = false;
-    public float startingPlayTime = 5f;
+    private float startingPlayTime = 5f;
     private float playTime;
-    private float fadeTime = 3f;
+    private float fadeTime = 5f;
 
     private void Start()
     {
